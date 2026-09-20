@@ -277,7 +277,7 @@ export const controllerAbi = parseAbi([
 export type SlotChoice = { slot: number; parent: number };
 
 /**
- * Reproduce the on-chain commit preimage (W3-01 fix):
+ * Reproduce the on-chain commit preimage:
  *   keccak256(abi.encode(SlotChoice[] choices, bytes32 salt))
  * Byte layout: head [offset to array = 0x40, salt (32)] ++ tail [length, then
  * each (slot, parent) tuple padded to 32 bytes]. Mirrors `lib/craft.ts`.

@@ -6,7 +6,7 @@
   "version": "0.1.0",
   "websiteUrl": "https://proofofarchitect.builders",
   "repository": {
-    "url": "https://github.com/Proofofarchitect/arc-pow-sigils",
+    "url": "https://github.com/Proofofarchitect/arc-pow-sigils-mcp",
     "source": "github"
   },
   "packages": [

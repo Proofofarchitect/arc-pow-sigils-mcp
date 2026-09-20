@@ -1,7 +1,7 @@
 # arc-pow-sigils-mcp
 
 A standalone [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server
-for the **Proof of Architect** NFT collection (House Card art) — a proof-of-work
+for the **Proof of Architect** NFT collection (deterministic Architector cards) — a proof-of-work
 minted NFT on **Arc testnet** (chainId `5042002`, native gas token **USDC**, 18 decimals).
 
 The server exposes **read-only** tools over the deployed `PowMintNFTv3` contract so an
@@ -123,7 +123,7 @@ pass nonces mined for the contract you query.
 | Variable | Default | Purpose |
 | --- | --- | --- |
 | `CONTRACT_ADDRESS` | `0x2F7cE1e4A175b1A16e4f151fA5B862ea6b9F3C8b` | PowMintNFTv3 address (mainnet TBD) |
-| `CRAFT_ADDRESS` | `0xF3E861085D5569d3eb376277a3F3D87579E94b09` | CraftingController v1 address (commit-reveal crafting) |
+| `CRAFT_ADDRESS` | `0x1542c820cF8644Abb91BF5c275097f89578FC3A9` | CraftingController v1 address (commit-reveal crafting) |
 | `ARC_RPC_URL` | `https://rpc.testnet.arc.io` | Arc testnet RPC endpoint |
 | `SITE_URL` | `https://proofofarchitect.builders` | Base site for `/api/image/{id}` and `/api/meta/{id}` links |
 
@@ -133,13 +133,11 @@ All variables are optional. No secrets are read or stored.
 
 ## Publish to the MCP registry
 
-1. **Replace the placeholders.** The official
+1. **Check the registry name.** The official
    [MCP registry](https://registry.modelcontextprotocol.io) requires a reverse-DNS
-   server name that includes your GitHub username — for this project:
-   `Proofofarchitect`. Replace `io.github.YOUR-GITHUB-USERNAME` in **both**
-   `package.json` (`mcpName` field) and `server.json` (`name` field) with
-   `io.github.Proofofarchitect/...`, and fix `server.json` `repository.url`
-   (`YOUR-GITHUB-USERNAME` → `Proofofarchitect`).
+   server name that includes your GitHub username. This package is already set to
+   `io.github.Proofofarchitect/arc-pow-sigils` in **both** `package.json`
+   (`mcpName` field) and `server.json` (`name` field) — keep them in lockstep.
 
 2. **Publish the npm package** (the registry resolves the stdio package by name):
 
@@ -148,7 +146,8 @@ All variables are optional. No secrets are read or stored.
    npm publish --access public
    ```
 
-3. **Install the registry publisher CLI** and publish the server metadata:
+3. **Install the registry publisher CLI** and publish the server metadata (requires
+the GitHub account `Proofofarchitect` for the namespace check):
 
    ```bash
    npx @modelcontextprotocol/mcp-publisher --help

@@ -36,7 +36,7 @@ function ok(data: unknown) {
 /**
  * Condense an unexpected error into one short, leak-free line. Strips stack
  * frames and library version markers (e.g. "Version: viem@2.x.y") so raw
- * internals never reach the MCP client (external pentest finding F4).
+ * internals never reach the MCP client (hardened after an external security review).
  */
 function shortErr(err: unknown): string {
   const raw = err instanceof Error ? err.message : String(err);
@@ -62,7 +62,7 @@ function failInternal(tool: string, err: unknown) {
 }
 
 /**
- * Salt policy surfaced by `craft_info` (HC/2 spec §3 / W3-01 fix). Plain prose so
+ * Salt policy surfaced by `craft_info` (crafting spec). Plain prose so
  * an agent can quote it verbatim; the controller cannot check salt entropy.
  */
 const SALT_POLICY =
@@ -460,7 +460,7 @@ server.registerTool(
   {
     title: "Craft info",
     description:
-      "Read-only view of the CraftingController v1 (commit-reveal House Card " +
+      "Read-only view of the CraftingController v1 (commit-reveal Architector " +
       "crafting): paused, craftFee, per-tier boostCost/feeFor/maxChosen (0..3), " +
       "committedFees, lastCommitId and the reveal/entropy window constants " +
       "(ENTROPY_DELAY, MIN_REVEAL_DELAY, REVEAL_WINDOW). Also returns the salt " +
